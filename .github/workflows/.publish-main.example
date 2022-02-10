@@ -1,0 +1,25 @@
+name: Publish version from Kraken
+on:
+  push:
+    branches: [main]
+  release:
+    types: [created]
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    permissions: 
+      contents: read
+      packages: write 
+    steps:
+      - uses: actions/checkout@v2
+      # Setup .npmrc file to publish to GitHub Packages
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@noverde'
+      - run: $(sed -i 's/_authToken=${KRAKEN_PAT}/_authToken=${{ secrets.KRAKEN_PAT }}/gI' .npmrc)
+      - run: npm install
+      - run: npm run pub
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.KRAKEN_LIB_TOKEN }}

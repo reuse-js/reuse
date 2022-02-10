@@ -1,0 +1,58 @@
+{
+  "name": "@noverde/{{repositorio}}",
+  "version": "0.0.0",
+  "description": "{{ descricao do repositorio }}",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "react": "17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.3.0",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-typescript": "^7.15.0",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/addons": "^6.3.12",
+    "@storybook/react": "^6.3.12",
+    "@storybook/theming": "^6.3.12",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "@types/react-router-dom": "^5.3.2",
+    "@types/styled-components": "^5.1.15",
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "@typescript-eslint/parser": "^5.2.0",
+    "babel-loader": "^8.2.3",
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "2.4.1",
+    "stylelint": "^14.1.0",
+    "stylelint-config-recommended": "^6.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.10.0",
+    "typescript": "^4.4.4"
+  },
+  "scripts": {
+    "build": "tsc -d",
+    "dev": "yarn build && yarn storybook",
+    "compress-dist": "npm pack ./dist",
+    "prepare-package": "yarn build && cp package.json dist && yarn compress-dist",
+    "post-build": "rm -rf $(node -p \"p=require('./package.json');p.name.replace('/', '-').replace('@', '')+'-'+p.version+'.tgz'\")",
+    "pub": "yarn prepare-package && npm publish $(node -p \"p=require('./package.json');p.name.replace('/', '-').replace('@', '')+'-'+p.version+'.tgz'\") && yarn post-build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "lint:css": "stylelint './src/**/*.styles.ts'"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "https://github.com/noverde/{{repositorio}}.git"
+}
