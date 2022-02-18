@@ -1,5 +1,5 @@
 {
-  "name": "@noverde/{{repositorio}}",
+  "name": "@reuse/reuse",
   "version": "0.0.0",
   "description": "{{ descricao do repositorio }}",
   "main": "index.js",
