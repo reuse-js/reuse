@@ -1,3 +1,9 @@
+## Sobre o Reuse
+- focado em gerenciar estado
+- assim como o famoso Redux, o Reuse possui uma árvore de estado única
+- lógica componível
+- feito para React
+- não distribui o dado, passa essa responsabilidade pro Context API
 
 
 ```tsx
